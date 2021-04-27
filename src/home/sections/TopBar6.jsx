@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { debounce, classList } from "utils";
-import Icon from "@material-ui/core/Icon";
-import IconButton from "@material-ui/core/IconButton";
-import { NavLink, useHistory } from "react-router-dom";
-import ScrollTo from "../common/ScrollTo";
-import { Button } from "@material-ui/core";
+import React, { useState, useEffect } from 'react';
+import { debounce, classList } from 'utils';
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
+import { useHistory } from 'react-router-dom';
+import ScrollTo from '../common/ScrollTo';
+import { Button } from '@material-ui/core';
 
 const TopBar6 = (props) => {
   const [isTop, setIsTop] = useState(true);
@@ -12,11 +12,11 @@ const TopBar6 = (props) => {
 
   const history = useHistory();
 
-  let scrollableElement = document.querySelector(".scrollable-content");
+  let scrollableElement = document.querySelector('.scrollable-content');
   if (!scrollableElement) scrollableElement = window;
 
   let handleScrollRef = null;
-  let toggleIcon = isClosed ? "menu" : "close";
+  let toggleIcon = isClosed ? 'menu' : 'close';
 
   const handleScroll = () => {
     return debounce(({ target: { scrollTop } }) => {
@@ -33,25 +33,25 @@ const TopBar6 = (props) => {
 
   useEffect(() => {
     if (scrollableElement) {
-      scrollableElement.addEventListener("scroll", handleScrollRef);
+      scrollableElement.addEventListener('scroll', handleScrollRef);
     }
 
     return () => {
       if (scrollableElement) {
-        scrollableElement.removeEventListener("scroll", handleScrollRef);
+        scrollableElement.removeEventListener('scroll', handleScrollRef);
       }
     };
   }, [scrollableElement, handleScrollRef]);
 
   const clickhandler = () => {
-    history.push("/");
+    history.push('/');
   };
 
   return (
     <section
       className={classList({
         header: true,
-        "header-fixed": !isTop,
+        'header-fixed': !isTop,
         closed: isClosed,
       })}
     >
@@ -90,7 +90,7 @@ const TopBar6 = (props) => {
         </ul>
         <div className="m-auto" />
         <div className="navigation flex">
-          <NavLink to="/about" className="mr-1">
+          <a href="/about">
             <Button
               className="box-shadow-none rounded px-6 hover-bg-primary capitalize"
               variant="outlined"
@@ -98,7 +98,7 @@ const TopBar6 = (props) => {
             >
               About us
             </Button>
-          </NavLink>
+          </a>
         </div>
         <IconButton
           className="header__toggle"
